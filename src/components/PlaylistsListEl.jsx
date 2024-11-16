@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import testIMG from "../assets/tt.png"
 
 export default function PlaylistsListEl(props){
     const maxDescL=40;//45..

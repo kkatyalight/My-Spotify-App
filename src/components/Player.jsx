@@ -1,12 +1,9 @@
-import add_fav_icon from "../assets/add_fav_icon.svg"
 import connection_icon from "../assets/connection_icon.svg"
 import full_screen_icon from "../assets/full_screen_icon.svg"
 import list_icon from "../assets/list_icon.svg"
 import mix_icon from "../assets/mix_icon.svg"
 import next_track_icon from "../assets/next_track_icon.svg"
 import now_playing_icon from "../assets/now_playing_icon.svg"
-import pause_icon from "../assets/pause_icon.svg"
-import play_icon_green from "../assets/play_icon_green.svg"
 import play_icon from "../assets/play_icon.svg"
 import prev_track_icon from "../assets/prev_track_icon.svg"
 import repeat_icon from "../assets/repeat_icon.svg"
@@ -27,19 +24,15 @@ export default function Player({handleInfoClick}){
         trackName=curTrackId ? curTrackId.trackInfo.name : "Track Name";
         authorName=curTrackId ? curTrackId.trackInfo.artists[0].name : "Author Name";
         imgSrcAlbum=curTrackId?.trackInfo.album.images[2].url; 
-        //imgSrcArtist=curTrackId?.trackInfo.album.images[1].url; 
     }
     return(
         <footer className='player'>
-            {/* компонент 1 */}
             <div className="player-info">
 
                 <div className="tracks-table-title">
                     <img className="img-track" src={imgSrcAlbum} alt="" />
                     <ListBasic text1={trackName} text2={authorName}/>
                 </div>
-             
-                <img src={add_fav_icon} alt="add_fav_icon" />
             </div>
             <div className="player-handler">
                 <div className='player-buttons'>
@@ -51,7 +44,6 @@ export default function Player({handleInfoClick}){
                 </div>
                 <div className="player-timer">
                     <p>3:02</p>
-                    {/* slider */}
                     <p>4:03</p>
                 </div>
             </div>
@@ -62,7 +54,6 @@ export default function Player({handleInfoClick}){
                 <img src={connection_icon} alt="connection_icon" />
                 <div>
                     <img src={sound_icon} alt="sound_icon" />
-                    {/* slider */}
                 </div>
                 <img src={mini_player_icon} alt="mini_player_icon" />
                 <img src={full_screen_icon} alt="full_screen_icon" />

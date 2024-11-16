@@ -9,9 +9,7 @@ export default function ListBasic(props){
                         <p className="font-medium-14">{props.text2}</p>
                     </div>
                 }
-                
             </div>
-            
         )
     }
     else{

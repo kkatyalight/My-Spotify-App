@@ -9,13 +9,10 @@ import { useResize } from "../useResize.js"
 
 export default function PlaylistsMainRow(props){
     const [loading, setLoading] = useState(true);
-    //const [client, setClient]=useState(useContext(ClientContext));
     const [playlists, setPlaylists]=useState([]);
     const limit  = useResize();
-    //console.log(limit);
     useEffect(() => {
         const getPlaylists=async()=>{
-            //const limit=6;//4
             setPlaylists(await PlaylistsManager.getPlaylistsByCategory(props.id,limit));
             setLoading(false);
         }
@@ -41,7 +38,5 @@ export default function PlaylistsMainRow(props){
                 </div>
             </div>
         )
-    }
-    //else console.log('loading');
-   
+    }  
 }

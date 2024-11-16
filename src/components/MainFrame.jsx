@@ -19,7 +19,6 @@ export default function MainFrame(props){
         getMainInfo();
       },[]);
 
-
     if(!loading){
         const state ={ 
             type:'playlist',
@@ -27,9 +26,7 @@ export default function MainFrame(props){
             name: "Favorites", 
             image:fav_tracks_icon,
             description:"Your liked songs",
-        }
-                
-         
+        }      
         return(
             <section className="main-frame base_background" style={props.mainGridPos}>
 
@@ -51,6 +48,4 @@ export default function MainFrame(props){
             </section>
         )
     }
-    else console.log('loading MainFrame');
-
 }

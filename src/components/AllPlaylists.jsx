@@ -5,15 +5,13 @@ import {PlaylistsManager} from '../app.js'
 import Footer from "./Footer.jsx"
 import { CustomScroll } from "react-custom-scroll";
 
-
-
 export default function AllPlaylists(props){
     const location = useLocation();
     const [loading, setLoading] = useState(true);
     const [playlists, setPlaylists] = useState([]);;
      useEffect(() => {
         const getMainInfo=async()=>{
-            const limit=27;//4
+            const limit=27;
             setPlaylists(await PlaylistsManager.getPlaylistsByCategory(location.state.id,limit));
             setLoading(false);
         }
@@ -31,17 +29,6 @@ export default function AllPlaylists(props){
                             <PlaylistsListEl key={id} {...info}/>
                         )}
                     </div>
-                {/* <div className="playlists-main-row-warp">
-                    <HeaderTextRow text1={props.header} text2="Show all" 
-                    text1Class="font-bold-24" link={link}/>
-            
-                    <div className="playlists-main-row-list">
-                        {playlists.map((info,id)=>
-                            <PlaylistsListEl key={id} {...info}/>
-                        )}
-                    </div>
-                </div> */}
-
                 <Footer/>
              </CustomScroll>     
              </section>

@@ -1,4 +1,3 @@
-import testIMG from "../assets/tt.png"
 import library_icon from "../assets/library_icon.svg"
 import menu_icon from "../assets/menu_icon.svg"
 import { CustomScroll } from "react-custom-scroll";
@@ -120,10 +119,7 @@ export default function MediaLibrary({handleLibraryClick,showLibrary}){
             }
         }
       }
-
-    
       if(!loading && curShow){
-        console.log(curShow);
         return(
         <section className="media-library-wrap base_background">
             <CustomScroll heightRelativeToParent="calc(100% - 1rem)">
@@ -168,13 +164,13 @@ export default function MediaLibrary({handleLibraryClick,showLibrary}){
                     }
                     {curShowType=='artist' &&
                          curShow.map((info, id)=>(
-                            <ListBasic key={id} img={info.images[1].url} showFull={showLibrary}
+                            <ListBasic key={id} img={info.images[0].url} showFull={showLibrary}
                             text1={info.name} text2={info.type}/>
                          ))
                     }
                      {curShowType=='album' &&
                          curShow.map((info, id)=>(
-                            <ListBasic key={id} img={info.album.images[2].url} showFull={showLibrary}
+                            <ListBasic key={id} img={info.album.images[0].url} showFull={showLibrary}
                             text1={info.album.name} 
                             text2={info.album.album_type+" "+info.album.artists[0].name}/> 
                          ))

@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom"
 
 export default function HeaderTextRow(props){
-    //console.log(props);
     if(props.link){
         return(
             <div className="media-info-row-wrap">
@@ -13,7 +12,6 @@ export default function HeaderTextRow(props){
                     <p className={props.text2Class?`${props.text2Class} hover-line`:"font-medium-14 hover-line"}>
                         {props.text2}</p>
                 </Link>
-                
             </div>
         )
     }

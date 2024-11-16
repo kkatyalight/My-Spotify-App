@@ -6,7 +6,6 @@ import Footer from "./Footer.jsx"
 import { CustomScroll } from "react-custom-scroll";
 import play_icon_green from "../assets/play_icon_green.svg"
 import add_fav_icon from "../assets/add_fav_icon.svg"
-import fav_tracks_icon from "../assets/fav_tracks_icon.svg"
 
 import { useResize } from "../useResize.js"
 import { confirmAlert } from "react-confirm-alert";
@@ -81,17 +80,14 @@ export default function Playlist(props){
                     <img src={play_icon_green} alt="play_icon_green" />
                     <img onClick={handleConfirm} src={add_fav_icon} alt="add_fav_icon" />
                 </div>
-                
                     <PlaylistTrackEl id="0"/>
                     <hr />
                     {tracks.map((info,id)=>
                         <PlaylistTrackEl key={id+1} id={id+1} track={info.track} playlist={location.state}/>
                     )}
-             
                  <Footer/>
              </CustomScroll>     
              </section>
          )
      }
-     //else console.log('loading MainFrame');
 }

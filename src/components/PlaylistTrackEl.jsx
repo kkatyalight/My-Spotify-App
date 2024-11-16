@@ -29,9 +29,7 @@ export default function PlaylistTrackEl(props){
     const handleAddFollow=()=>{
         const response=UsersManager.addTrack(props.track.id)
          alert("Трек добавлен в избранные");
-       
     }
-
     const handleConfirm=()=>{
         confirmAlert({
             customUI: ({ onClose }) => {

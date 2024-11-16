@@ -1,12 +1,10 @@
 
 const client_id = import.meta.env.VITE_CLIENT_ID
 const client_secret = import.meta.env.VITE_CLIENT_SECRET_ID;
-//const refresh_token = process.env.SPOTIFY_REFRESH_TOKEN;
 const TOKEN_ENDPOINT = `https://accounts.spotify.com/api/token`;
-//const basic = Buffer.from(`${client_id}:${client_secret}`).toString('base64');
 const baseUrl="https://api.spotify.com/v1"
 let token;
-let user;
+
 
 const customFetch=async(url,needBaseUrl, httpMethod, httpHeaders, httpBody)=>{
     const fetchOptions={};
@@ -19,13 +17,11 @@ const customFetch=async(url,needBaseUrl, httpMethod, httpHeaders, httpBody)=>{
     fetchOptions.headers={"Authorization":`Bearer ${token}`};
     //if need body
     if(httpBody) fetchOptions.body=httpBody; 
-    //console.log(url,fetchOptions);
+
     const result= await fetch(url,fetchOptions);
 
     if (httpMethod!="GET") return result;
     const data =await result.json();
-
-    //console.log(data);
     return data;
 }
 
@@ -67,8 +63,7 @@ export async function setAccessToken(){
     const hash = window.location.hash.substring(1);
     const accessString = hash.indexOf("&");
     token = hash.substring(13, accessString);
-    console.log("Access Token: " + token);
-    await UsersManager.getUserProfile();
+    //await UsersManager.getUserProfile();
     return token;
 }
 
@@ -119,14 +114,13 @@ export class TracksManager{
     
 }
 export class UsersManager{
-    static async getUserProfile(){
-        const data=await customFetch(
-            `/me`, 1,
-            "GET",
-        );
-        console.log('prof',data);
-        user=data;
-    };
+    // static async getUserProfile(){
+    //     const data=await customFetch(
+    //         `/me`, 1,
+    //         "GET",
+    //     );
+    //     console.log('prof',data);
+    // };
     static async getUserHistory(){
         const data=await customFetch(
             `/me/player/recently-played`, 1,
@@ -167,8 +161,6 @@ export class UsersManager{
             `/me/following?type=artist`, 1,
             "GET",
         );
-        
-        console.log(data);
         return data.artists.items;
     };
     static async getUserSavedTracks(){

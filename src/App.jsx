@@ -4,13 +4,10 @@ import Player from "./components/Player.jsx"
 import MediaLibrary from "./components/MediaLibrary.jsx"
 import MainFrame from "./components/MainFrame.jsx"
 import MediaInfo from "./components/MediaInfo.jsx"
-
-import SearchFrame from "./components/SearchFrame.jsx"
 import Playlist from "./components/Playlist.jsx"
 import AllPlaylists from "./components/AllPlaylists.jsx"
 import {setAccessToken,url} from "./app.js"
 import { createContext,useState,useEffect } from 'react'
-//export const ClientContext = createContext(new Client());
 
 import { createBrowserRouter,RouterProvider} from "react-router-dom";
 
@@ -29,7 +26,6 @@ export default function App() {
   const [showLibrary, setShowLibrary] = useState(false)
 
   useEffect(()=>{
-    console.log(showLibrary);
     if (window.location.hash!="") {
       const getMainInfo=async()=>{
         await setAccessToken();
@@ -69,9 +65,6 @@ const handleLibraryClick=()=>{
   setShowLibrary(!showLibrary);
 }
 
-// const [status, setStatus] = useState('paused');
-//   const togglePlayPause = () => setStatus(status === 'playing' ? 'paused' : 'playing');
-
 const [trackStatus, setTrackStatus] = useState('paused');
 const [curTrackId, setCurTrackId] = useState(null);
 const handleTrackClick=(trackInfo, playlistInfo)=>(e)=>{
@@ -79,7 +72,6 @@ const handleTrackClick=(trackInfo, playlistInfo)=>(e)=>{
   console.log(trackStatus);
   if(curTrackId==null || curTrackId.trackInfo.id!=trackInfo.id) setCurTrackId({trackInfo, playlistInfo});
   else setTrackStatus(trackStatus=='paused'?'playing':'paused')
-
 }
 
 const router=createBrowserRouter([
@@ -90,10 +82,6 @@ const router=createBrowserRouter([
   {
     path: "/playlist/:id",
     element: <Playlist mainGridPos={mainGridPos}/>,
-  },
-  {
-    path: "/search",
-    element: <SearchFrame mainGridPos={mainGridPos}/>,
   },
   {
     path: "/all-playlists-by-category/:id",

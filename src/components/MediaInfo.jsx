@@ -1,10 +1,8 @@
-import testIMG from "../assets/tt.png"
 import options from "../assets/options_icon.svg"
 import close from "../assets/close_icon.svg"
 import add_fav from "../assets/add_fav_icon.svg"
 
 import ListBasic from "./ListBasic.jsx"
-import HeaderTextRow from "./HeaderTextRow.jsx"
 
 import { CustomScroll } from "react-custom-scroll";
 import { useState,useContext,useEffect } from "react"
@@ -19,7 +17,6 @@ export default function MediaInfo({handleInfoClick, showInfo}){
     const {trackStatus,curTrackId,handleTrackClick} = useContext(TrackContext);
     const [artist, setArtist] = useState();
     const [loading, setLoading] = useState(true);
-    //console.log(curTrackId);
     useEffect(() => {
  
         const getMainInfo=async()=>{
@@ -37,6 +34,11 @@ export default function MediaInfo({handleInfoClick, showInfo}){
         imgSrcAlbum=curTrackId?.trackInfo.album.images[1].url; 
         //imgSrcArtist=curTrackId?.trackInfo.album.images[1].url; 
     }
+    const handleAddFollowTrack=()=>{
+        const response=UsersManager.addTrack(curTrackId.trackInfo.id)
+         alert("Трек добавлен в избранные");
+    }
+
     const handleAddFollow=async()=>{
         const response= await UsersManager.followArtist(curTrackId.trackInfo.artists[0].id);
         console.log(response);
@@ -44,15 +46,18 @@ export default function MediaInfo({handleInfoClick, showInfo}){
         else alert("Ошибка при подписке")
        }
        
-       const handleConfirm=()=>{
+       const handleConfirm=(type)=>{
             confirmAlert({
                 customUI: ({ onClose }) => {
                 return (
                     <div className="custom-ui">
                         <h1>Are you sure?</h1>
-                        <p>Do you want to follow this artist?</p>
+                        {type=='artist' &&  <p>Do you want to follow this artist?</p>}
+                        {type=='track' && <p>Do you want to add this track to favorites?</p>}
+                       
                         <button onClick={onClose}>No</button>
-                        <button onClick={() => {handleAddFollow(); onClose()}}>Yes</button>
+                        {type=='artist' && <button onClick={() => {handleAddFollow(); onClose()}}>Yes</button>}
+                        {type=='track' && <button onClick={() => {handleAddFollowTrack(); onClose()}}>Yes</button>}
                     </div>
                 );
                 }
@@ -60,14 +65,7 @@ export default function MediaInfo({handleInfoClick, showInfo}){
        }
 
     if(showInfo){          
-        // console.log(curTrackId);
-        if (!loading) console.log(artist);
-        // if(curTrackId){
-            
-        // }
         return(
-            //<TrackContext.Consumer>
-            
                 <section className="media-info base_background">
                 <CustomScroll heightRelativeToParent="calc(100% - 1rem)">
                     <header className="media-info-header">
@@ -86,7 +84,7 @@ export default function MediaInfo({handleInfoClick, showInfo}){
                             <ListBasic headerClass="font-bold-24" 
                             text1={trackName} 
                             text2={authorName}/>
-                            <img src={add_fav} alt="" /> 
+                            {curTrackId && <img onClick={()=>handleConfirm('track')} src={add_fav} alt="" /> }
                         </div>                   
                     </div>
                     <div className="media-info-author-wrap info_background margin-small">
@@ -100,7 +98,7 @@ export default function MediaInfo({handleInfoClick, showInfo}){
                                 <p className="font-medium-16">{
                                     !loading ? artist.followers.total+" Followers" : "Followers"
                                 }</p>
-                                {curTrackId && <button onClick={handleConfirm} id="follow-button" className="font-medium-16">Follow</button>}
+                                {curTrackId && <button onClick={()=>handleConfirm("artist")} id="follow-button" className="font-medium-16">Follow</button>}
                             </div>
                             <p className="font-medium-14">{
                                 !loading ? "Genres: "+artist.genres.join(', '): "Genres:"
@@ -108,10 +106,7 @@ export default function MediaInfo({handleInfoClick, showInfo}){
                         </div>
                     </div>
                 </CustomScroll>
-                
             </section>
-            //</TrackContext.Consumer>
-
         )
     }
 
