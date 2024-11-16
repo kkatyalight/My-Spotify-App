@@ -78,7 +78,7 @@ export default function Playlist(props){
 
                 <div className="playlist-buttons">
                     <img src={play_icon_green} alt="play_icon_green" />
-                    <img onClick={handleConfirm} src={add_fav_icon} alt="add_fav_icon" />
+                    <img className="hover-icon" onClick={handleConfirm} src={add_fav_icon} alt="add_fav_icon" />
                 </div>
                     <PlaylistTrackEl id="0"/>
                     <hr />

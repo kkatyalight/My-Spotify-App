@@ -84,7 +84,7 @@ export default function MediaInfo({handleInfoClick, showInfo}){
                             <ListBasic headerClass="font-bold-24" 
                             text1={trackName} 
                             text2={authorName}/>
-                            {curTrackId && <img onClick={()=>handleConfirm('track')} src={add_fav} alt="" /> }
+                            {curTrackId && <img className="hover-icon" onClick={()=>handleConfirm('track')} src={add_fav} alt="" /> }
                         </div>                   
                     </div>
                     <div className="media-info-author-wrap info_background margin-small">

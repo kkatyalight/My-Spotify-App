@@ -257,7 +257,9 @@ section{
   grid-column: 1/2;
   width: 100%;
   padding: 0.6rem;
- 
+}
+.media-library-header{
+  position: relative;
 }
 .media-library-info-opened{
   width: 100%;
@@ -317,8 +319,8 @@ section{
 }
 .filter{
   position: absolute;
-  top: 0;
-  right: 0rem;
+  top: 3rem;
+  right: 1rem;
   display: flex;
   flex-direction: column;
   gap: 0.3rem;
@@ -603,7 +605,7 @@ section{
 .footer-up-colomns{
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-evenly;
 }
 .footer-up-colomn{
   display: flex;

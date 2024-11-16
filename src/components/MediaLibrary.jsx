@@ -124,20 +124,11 @@ export default function MediaLibrary({handleLibraryClick,showLibrary}){
         <section className="media-library-wrap base_background">
             <CustomScroll heightRelativeToParent="calc(100% - 1rem)">
                 <div className={showLibrary?`media-library-info-opened`:`media-library-info`}>
-                    <div>
+                    <div className="media-library-header">
                         <img className="hover-icon" src={library_icon} alt="" onClick={()=>{handleLibraryClick(); handleRerender()}}/>
                         {showLibrary && <p className="font-bold-24">Your Library</p> }
                         {showLibrary && <img className="hover-icon" onClick={()=>setShowFilter(!showFilter)} src={menu_icon} alt="" />}
-                    </div>
-                    {showLibrary && 
-                        <div className="main-header">
-                            <button onClick={()=>handleSort('playlist')} className={curShowType=='playlist'?`button-current`:''}>
-                                Playlists</button>
-                            <button onClick={()=>handleSort('artist')} className={curShowType=='artist'?`button-current`:''}>
-                                Artists</button>
-                            <button onClick={()=>handleSort('album')} className={curShowType=='album'?`button-current`:''}>
-                                Albums</button>
-                            {showFilter && 
+                        {showFilter && 
                                 <div className="filter info_background font-bold-16">
                                     <p className="font-medium-14">Sort by</p>
                                     <p onClick={()=>handleSort('name')} className="hover-line">Name</p>
@@ -152,6 +143,15 @@ export default function MediaLibrary({handleLibraryClick,showLibrary}){
                                     }
                                 </div> 
                                 }
+                    </div>
+                    {showLibrary && 
+                        <div className="main-header">
+                            <button onClick={()=>handleSort('playlist')} className={curShowType=='playlist'?`button-current`:''}>
+                                Playlists</button>
+                            <button onClick={()=>handleSort('artist')} className={curShowType=='artist'?`button-current`:''}>
+                                Artists</button>
+                            <button onClick={()=>handleSort('album')} className={curShowType=='album'?`button-current`:''}>
+                                Albums</button>
                         </div>
                     }
                         

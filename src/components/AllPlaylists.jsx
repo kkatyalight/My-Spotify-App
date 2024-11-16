@@ -1,5 +1,5 @@
 import {useState,useEffect } from "react";
-import {useLocation} from 'react-router-dom';
+import {Link, useLocation} from 'react-router-dom';
 import PlaylistsListEl from "./PlaylistsListEl.jsx"
 import {PlaylistsManager} from '../app.js'
 import Footer from "./Footer.jsx"
@@ -23,6 +23,9 @@ export default function AllPlaylists(props){
          return(
              <section className="playlist main-frame base_background" style={props.mainGridPos}>
              <CustomScroll heightRelativeToParent="calc(100% - 1rem)">
+                <Link to="/">
+                    <button id="home">Home</button>
+                </Link>
                 <p className="font-bold-48">{location.state.header}</p>
                 <div className="playlists-all-row-list-wrap">
                         {playlists.map((info,id)=>

@@ -70,7 +70,7 @@ export default function PlaylistTrackEl(props){
                     {limit>4 && <p className="tracks-table-album font-medium-14">{props.track.album.name}</p>}
                         {props.playlist.id!='fav'&& 
                         <img onClick={handleConfirm} 
-                        className="tracks-table-add font-medium-14" 
+                        className="tracks-table-add hover-icon" 
                         src={add_fav_icon} alt="add_fav_icon" />}
                     <p className="tracks-table-time font-medium-14">{time}</p>
                 </div>
