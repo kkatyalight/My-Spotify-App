@@ -100,7 +100,7 @@ const router=createBrowserRouter([
     element: <AllPlaylists mainGridPos={mainGridPos}/>,
   }
 ], {
-  basename: "/",
+  basename: "/My-Spotify-App/",
 })
   return (
     <>
